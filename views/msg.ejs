@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../stylesheets/msg.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.css" integrity="sha512-vEia6TQGr3FqC6h55/NdU3QSM5XR6HSl5fW71QTKrgeER98LIMGwymBVM867C1XHIkYD9nMTfWK2A0xcodKHNA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.0.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+
+</head>
+
+<body onload="document.body.style.opacity='1'">
+
+    <div id="main">
+
+        <div id="nav">
+         <div class="n2">
+            <h1>
+                Socihut
+            </h1>
+           <div class="search">
+            <i class="uil uil-search"></i>
+            <input type="text" name="" placeholder="Search for creators,inspirations, and projects" id="">
+
+           </div>
+           <div class="s3">
+            <a href="">Create</a>
+            <div class="pimg">
+                <img src="<%= loggedInuser.profileimg.url %>" alt="">
+            </div>
+         </div>
+           </div>
+        </div>
+        <div id="second_part">
+            <div class="sec" id="o1">
+
+              <a href="/profile/<%=loggedInuser._id%>" style="text-decoration: none;">
+                <div class="id">
+                    <div class="pimg">
+                      <img src="<%= loggedInuser.profileimg.url %>" alt="">
+                    </div>
+                    <div class="sid">
+                      <h1><%= loggedInuser.name %></h1>
+                      <h2>@<%= loggedInuser.username %></h2>
+                    </div>
+                  </div>
+              </a>
+                <div class="sec2">
+                  <a href="/home">
+                    <i class="uil uil-home"></i>
+                    <h1>Home</h1>
+                  </a>
+                  <a href="">
+                    <i class="uil uil-compass"></i>
+                    <h1>Explore</h1>
+                  </a>
+                  <a href="">
+                    <i class="uil uil-bell"></i>
+                    <h1>Notifications</h1>
+                  </a>
+                  <a href="/chat">
+                    <i class="uil uil-envelopes"></i>
+                    <h1>Messages</h1>
+                  </a>
+                  <a href="">
+                    <i class="uil uil-bookmark"></i>
+                    <h1>Bookmarks</h1>
+                  </a>
+                  <a href="">
+                    <i class="uil uil-chart-line"></i>
+                    <h1>Analytics</h1>
+                  </a>
+                  <a href="">
+                    <i class="uil uil-palette"></i>
+                    <h1>Theme</h1>
+                  </a>
+                  <a href="">
+                    <i class="uil uil-setting"></i>
+                    <h1>Settings</h1>
+                  </a>
+    
+                </div>
+                <div class="sec3">
+                    <h1>Create Post</h1>
+                </div>
+            </div>
+            <div class="sec" id="o3">
+             <div class="s">
+                <h3><%= loggedInuser.username %></h3>
+             </div>
+             <hr>
+
+             <div class="chat">
+              <% all.forEach(function(elem){ if(elem.username !== loggedInuser.username) { %>
+      <a href="" class=""> 
+        <div class="sec">
+          <div id="cir">
+            <img src="<%= elem.profileimg.url %>" alt="">
+          </div>
+          <div class="m">
+            <h1><%= elem.username %></h1>
+            
+            <% 
+            if(elem.online === "1"){%>
+              <h5 id="<%= elem._id %>-status" class="on"  >Online</h5>
+
+            <% }
+            else{%> 
+              <h5 id="<%= elem._id %>-status" class="of"  >Offline</h5>
+              
+              <%}
+            %>
+          </div>
+        </div>
+      </a>
+<%
+    }
+  });
+%>
+
+            
+             </div>
+            </div>
+            <div class="sec" id="cent">
+                     <div class="first">
+                        <div class="cir">
+                            <img src="<%= loggedInuser.profileimg.url %>" alt="">
+                        </div>
+                        <h1>Garvit Jain</h1>
+
+                     </div>
+                     <div id="msgs">
+                  <div class="msg">
+                    hello
+                  </div>
+                  <div class="rig">
+                    heeeelp
+                  </div>
+                  
+                     </div>
+                    <div id="bottom">
+                           <textarea name="mycss" id="text" cols="30" rows="10"></textarea>
+                           <button>
+                        <i class="ri-send-plane-fill"></i>
+
+                    </button>
+                    </div>
+            </div> 
+        </div>
+
+    </div>
+    
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js" integrity="sha512-cOH8ndwGgPo+K7pTvMrqYbmI8u8k6Sho3js0gOqVWTmQMlLIi6TbqGWRTpf1ga8ci9H3iPsvDLr4X7xwhC/+DQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.1/socket.io.js" integrity="sha512-xbQU0+iHqhVt7VIXi6vBJKPh3IQBF5B84sSHdjKiSccyX/1ZI7Vnkt2/8y8uruj63/DVmCxfUNohPNruthTEQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.js" integrity="sha512-hkvXFLlESjeYENO4CNi69z3A1puvONQV5Uh+G4TUDayZxSLyic5Kba9hhuiNLbHqdnKNMk2PxXKm0v7KDnWkYA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    
+    <script src="../javascripts/home.js"></script>
+<script>
+  var us
+     var socket = io({
+      auth : {
+        token:`<%= loggedInuser._id %>`
+      }
+     })
+    
+    $('#text').emojioneArea({
+     pickerPosition :'top',
+     filtersPosition: "bottom",
+ tonesStyle: "square",
+ shortnames: true,
+ tones:false,
+ search:false,
+ placeholder: "Message (optional)",
+   })
+
+
+   var clutter = "";
+// console.log()
+//    axios.get("/user").then(function(data){
+//     console.log(data)
+//     console.dir(data.data)
+//         // data.forEach(function(elem){
+           
+           
+//         // });
+     
+//     })
+
+
+socket.on("getonline",function(data){
+  console.log(data)
+  $('#' + data.user_id + '-status' ).text('Online')
+  $('#' + data.user_id + '-status' ).removeClass('of');
+  $('#' + data.user_id + '-status' ).addClass('on');
+
+
+})
+socket.on("getoffline",function(data){
+  $('#' + data.user_id + '-status' ).text('Offline')
+  $('#' + data.user_id + '-status' ).removeClass('on');
+  $('#' + data.user_id + '-status' ).addClass('of');
+
+
+})
+
+var objdiv = document.querySelector("#msgs")
+objdiv.scrollTop = objdiv.scrollHeight
+
+
+    document.querySelector("button").addEventListener("click",function(){
+        if(document.querySelector("#text").value.trim().length > 0){
+           socket.emit("msg",{data:document.querySelector("#text").value,user:document.querySelector("#o3 .s h3").textContent})
+           $(".emojionearea-editor").html('');
+        
+       }
+    })
+ 
+
+    socket.on("msg",function(data){
+var usern = document.querySelector("#o3 .s h3").textContent;
+       var div = document.createElement("div");
+       if(data.user === document.querySelector("#o3 .s h3").textContent){
+           div.classList.add("rig")
+       div.textContent = `${data.user} : ${data.data}`;
+       document.querySelector("#msgs").appendChild(div)
+       }
+       else{
+           div.classList.add("msg")
+       div.textContent = `${data.user} : ${data.data}`;
+       document.querySelector("#msgs").appendChild(div)
+       }
+  
+   
+       
+   })
+   socket.emit("setname",document.querySelector("#o3 .s h3").textContent)
+
+
+</script>
+</body>
+
+</html>
